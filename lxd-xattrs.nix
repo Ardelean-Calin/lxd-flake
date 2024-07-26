@@ -14,6 +14,7 @@
   installShellFiles,
   nixosTests,
   nix-update-script,
+  pkgs,
 }:
 buildGo122Module rec {
   pname = "lxd-unwrapped-lts";
@@ -53,6 +54,7 @@ buildGo122Module rec {
     raft-canonical.dev
     sqlite
     udev.dev
+    pkgs.iproute2
   ];
 
   ldflags = [
