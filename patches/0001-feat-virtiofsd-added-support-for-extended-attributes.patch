@@ -1,0 +1,25 @@
+From 64eb3a6374b043b7d18f5a75d1ec21b5a112a912 Mon Sep 17 00:00:00 2001
+From: Ardelean Calin <9417983+Ardelean-Calin@users.noreply.github.com>
+Date: Fri, 26 Jul 2024 12:40:05 +0300
+Subject: [PATCH] feat(virtiofsd): added support for extended attributes
+
+---
+ lxd/device/device_utils_disk.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lxd/device/device_utils_disk.go b/lxd/device/device_utils_disk.go
+index 2b70ad05b9..decc5370d3 100644
+--- a/lxd/device/device_utils_disk.go
++++ b/lxd/device/device_utils_disk.go
+@@ -502,7 +502,7 @@ func DiskVMVirtiofsdStart(execPath string, inst instance.Instance, socketPath st
+ 	defer func() { _ = unixFile.Close() }()
+ 
+ 	// Start the virtiofsd process in non-daemon mode.
+-	args := []string{"--fd=3", "-o", fmt.Sprintf("source=%s", sharePath)}
++	args := []string{"--fd=3", "--xattr", "-o", fmt.Sprintf("source=%s", sharePath)}
+ 	proc, err := subprocess.NewProcess(cmd, args, logPath, logPath)
+ 	if err != nil {
+ 		return nil, nil, err
+-- 
+2.44.1
+
